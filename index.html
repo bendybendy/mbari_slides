@@ -26,9 +26,16 @@
         font-family: "Roboto", "Helvetica Neue", 'sans-serif';
         font-weight: 800;
       }
+      li {
+        padding-bottom: 0.7em;
+      }
       .remark-slide-content h1 { font-size: 1.6em}
       .remark-slide-content h2 { font-size: 1.4em}
       .remark-slide-content h3 { font-size: 1.2em}
+      .remark-slide-content img { 
+          max-width: 95%;
+          height: auto;
+      }
       .remark-code, .remark-inline-code { font-family: 'Ubuntu Mono'; }
     </style>
   </head>
@@ -69,47 +76,98 @@ To be honest, I haven't seen much successful use of Linux on the Desktop for res
 ---
 # Research computing vs. general productivity
 ## outside collaboration
-- requires creating local account for outsiders 
-- we do this for reserchers who lack capacity for large/long jobs
-- in the cases of some software license terms, to grant access to propriatary software such as ArcGIS
+- Requires creating local account for outsiders 
+- We do this for reserchers who lack capacity for large/long jobs
+- In the cases of some software license terms, to grant access to propriatary software such as ArcGIS
 
 ---
 name: novel work
 class: center, middle
-# ultimately, research is about doing novel work, sometime requires novel solutions
+# Ultimately, research is about doing novel work, and sometime requires novel solutions...
 
 ## ...but always ask, "What is reusable?"
 ---
 name:
 
-# MGEL
-- 18 servers
-  - 5 computational
-  - 3 local files storage
-    - 2 DUML backup storage
-  - webservers and applications 
-      - all virtualized using open source KVM
-  - code repository 
-  - database instances 
-  - multiple versions of ARCGIS
+# Marine Geospatial Ecology Lab hardware 
+## 18 servers in small dedicated server room, 2 server remote 
+- 5 computational
+- 3 file storage  2 offsite backup storage
+- ~20TB of data 
+- 10 web and virutalized servers 
+
+--
+
+##webservers and applications 
+- all virtualized using open source KVM
+- code repository 
+- MGET tools is a series of Arc/Python software extensions we create and distribute
+- database instances 
+- applications such as obis-seamap
+
+---
+# Computational Servers
+- currently all running Windows
+- multiple versions of ArcGIS
+- Solid State Drives
+
+--
+
+## 3 servers with 128GB of RAM
+
+--
+
+## 1 optimized for interactive GIS 
+- Without a decidated video card, screen rendering can be slow compared to desktops
+
+--
+
+## 1 with more open software install privileges, for testing packages 
+
+---
+
+## Reached RAM capacity
+![](./images/mem.png)
 
 ---
 name:
 
 # DevOps/Sysadmin principals 
-- what are you trying to accomplish? 
-  - don't think in terms of technology, but the final state of the data
-  - frequently reframe this question as work develops
-- someone has already done it
-    - novel solution is in synthesis, not new coding
-    - there's usually a solution, might take two days
-    - too busy to develop stand alone solutions 
-      - counterexample YUM
-- keep systems as simple as possible
-  - network monitoring - monit, custom scripts over nagios 
-      - discovered there were only a few questions I wanted regular feedback on: who has logged on, are there any disk errors, have backups run, are any disks full (for both storage and operating system performance) 
-- Try different things
-  - RPD data disks vs. one big disk
+##  what are you trying to accomplish? 
+- Don't think in terms of technology. Ask "What is the final state of the data we want?"
+- Frequently reframe this question as work develops
+
+--
+
+## Someone has already done it
+- Novel solution is in synthesis, not new coding (Usually!) 
+- There's usually a solution, might take two days (Almost always two days) 
+- Too busy to develop stand alone solutions (Counterexample: YUM)  
+
+---
+# DevOps/Sysadmin principals 
+
+## Keep systems as simple as possible
+- network monitoring: monit and custom scripts over the more complex nagios 
+
+--
+
+## I discovered there were only a few questions where I wanted regular feedback: 
+
+--
+
+- Who has logged on?
+- Are there any disk errors? 
+- Have backups run?  
+- Are any disks full? (for both storage and operating system performance) 
+
+---
+
+# Try different things
+## On comutational servers, partition discrete data disks vs. one big disk
+## remote disks vs. attached storage 
+## various types of RAID for older hard disk arrays
+## With ideal configuration VMware's latest virutalization software can get close to bare-metal performance (but I still don't virutalize compuational hardware) 
 
 ---
 name:
@@ -118,43 +176,53 @@ name:
 - tradeoffs with usability and flexibility
 - VPN, ssh tunnels 
 - RDP 
-  - lockout policy    
-  - https://security.berkeley.edu/resources/best-practices-how-articles/system-application-security/securing-remote-desktop-rdp-system
+  - lockout policy: https://security.berkeley.edu/resources/best-practices-how-articles/system-application-security/securing-remote-desktop-rdp-system
+  - suspend login for an account after five failed attempts
       
 ---
 name:
       
 # Backups
 - keep three official copies in two locations
-  - backup for backtracking, backup for disaster
-- Zotero case study
-    - multiple instances with remote master
-    - 
+- backup for backtracking, backup for disaster
+
+---
+# A Backup Problem: Zotero  
+- literature reivew project, many researches developing taxa-based collections that we were aggregating 
+- multiple instances of Zotero with remote master (paid Zotero service) 
+- Zotero issue major update summer of 2017
+- Research, at home, opened Zotero on home computer for the first time in a month, older version of bibiolographic data clobbered everyones data
+- Zotero devleopers: UNIQUE BUG YOU FOUND THERE!
+- One person was on vacation, had a recent local master (about three days of work lost) 
+
 ---
 name:
 
 # Code repository  
-- for versioning code
-- for sharing final data products
-  - bad for binary files, workarounds 
-- self hosting vs GitHub
-  - data and sharing concerns: local
-      - ArcGIS code isn't completely open source
-  - personal code, public profile: GitHub
+- For versioning code
+- For sharing final data products
+  - Poor solution for binary files, there are workarounds 
+- Self-hosting vs GitHub
+  - Data and sharing concerns
+  - ArcGIS and other propriatary software can have complex relationships with open source
+  - If your code can boost your public profile: GitHub
   
 ---
 name:
 
 # More principles and hints
-- do it once, document it, do it multiple times script it
-   - tradeoffs to automation
-   - in research computing you aren't always sure of the longterm solution, so measure time spent in automating until you are sure its permanent service 
+## Do it once, document it. Do it multiple times, script it.
+- Time is a tradeoff with automation
+- In research computing you aren't always sure of the longterm solution, so measure time spent in automating until you are sure its permanent service 
 
-   - no solution is as permanent is a short term solution
-       - cause you'll move on to bigger problems
-       - case for doing it right
-       - don't fool yourself about revisiting
-           - I have the luxury of having been in the lab for years, so revisiting my short-term solutions I have background. Still, important to take notes          
+--
+
+## No solution is as permanent is a short term solution
+- 'Cause you'll move on to bigger problems
+- case for doing it right
+- Don't fool yourself about revisiting
+- I have the luxury of having been in the lab for years, so when revisiting my short-term solutions I have background knowlege. Still, important to take notes. 
+- Have a consistent location for notes. 
 
  </textarea>
     <!--script src="https://remarkjs.com/downloads/remark-latest.min.js"-->
