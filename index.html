@@ -75,17 +75,24 @@ To be honest, I haven't seen much successful use of Linux on the Desktop for res
 
 ---
 # Research computing vs. general productivity
-## outside collaboration
+## Outside collaboration
 - Requires creating local account for outsiders 
 - We do this for reserchers who lack capacity for large/long jobs
 - In the cases of some software license terms, to grant access to propriatary software such as ArcGIS
+
+--
+
+## Collborative documents and messaging 
+- Google drive and Dropbox
+- Duke provides a Box.com service with very large quotas, but we haven't seen much uptake 
+- Skype, but the kids are using Slack
 
 ---
 name: novel work
 class: center, middle
 # Ultimately, research is about doing novel work, and sometime requires novel solutions...
 
-## ...but always ask, "What is reusable?"
+## ...but always ask, **"What is reusable?"**
 ---
 name:
 
@@ -114,6 +121,8 @@ name:
 --
 
 ## 3 servers with 128GB of RAM
+- 500GB of SSD, RAID 0 for peformance
+- oceangraphic data downloaded locally, case by case with MGET tools 
 
 --
 
@@ -126,15 +135,16 @@ name:
 
 ---
 
-## Reached RAM capacity
+## We recently reached RAM capacity
 ![](./images/mem.png)
 
 ---
 name:
 
 # DevOps/Sysadmin principals 
-##  what are you trying to accomplish? 
-- Don't think in terms of technology. Ask "What is the final state of the data we want?"
+##  What are you trying to accomplish? 
+- Don't think in terms of technology. 
+- Ask **"What is the final state of the data we want?"**
 - Frequently reframe this question as work develops
 
 --
@@ -164,10 +174,14 @@ name:
 ---
 
 # Try different things
-## On comutational servers, partition discrete data disks vs. one big disk
-## remote disks vs. attached storage 
-## various types of RAID for older hard disk arrays
-## With ideal configuration VMware's latest virutalization software can get close to bare-metal performance (but I still don't virutalize compuational hardware) 
+- On comutational servers, partition discrete data disks vs. one big disk
+- remote disks vs. attached storage 
+- various types of RAID for older hard disk arrays
+- With ideal configuration VMware's latest virutalization software can get close to bare-metal performance 
+
+--
+
+## Computatial nodes have ended up non-virtualized Windows machines with direct attached storage; i.e., a big PC. 
 
 ---
 name:
@@ -183,17 +197,20 @@ name:
 name:
       
 # Backups
-- keep three official copies in two locations
-- backup for backtracking, backup for disaster
+- Keep three official copies in two locations
+- Backup for backtracking, backup for disaster
 
 ---
 # A Backup Problem: Zotero  
 - literature reivew project, many researches developing taxa-based collections that we were aggregating 
 - multiple instances of Zotero with remote master (paid Zotero service) 
 - Zotero issue major update summer of 2017
-- Research, at home, opened Zotero on home computer for the first time in a month, older version of bibiolographic data clobbered everyones data
+- Researcher opened Zotero on home computer for the first time in a month, older version of bibiolographic data clobbered everyones data
 - Zotero devleopers: UNIQUE BUG YOU FOUND THERE!
 - One person was on vacation, had a recent local master (about three days of work lost) 
+
+--
+- ** Many months later, working with Zotero, was able to integrate older recovered work with work going forward**
 
 ---
 name:
@@ -215,12 +232,20 @@ name:
 - Time is a tradeoff with automation
 - In research computing you aren't always sure of the longterm solution, so measure time spent in automating until you are sure its permanent service 
 
---
+---
+# More principles and hints
+## Propriatary software is easy to learn and hard to maintain 
+- Again, what it the final state of the data you want?
 
+## Open Source is hard to learn and easy to maintain 
+- AKA, It's only free if you're time is worth nothing. 
+
+---
+# More principles and hints
 ## No solution is as permanent is a short term solution
 - 'Cause you'll move on to bigger problems
-- case for doing it right
-- Don't fool yourself about revisiting
+- Makes the case for doing it right, right now.
+- Don't fool yourself about revisiting 
 - I have the luxury of having been in the lab for years, so when revisiting my short-term solutions I have background knowlege. Still, important to take notes. 
 - Have a consistent location for notes. 
 
